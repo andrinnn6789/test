@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "IAG.DataLayer.GenerateCreateScript": {
-      "commandName": "Project",
-      "commandLineArgs": "IAG.Infrastructure.dll"
-    }
-  }
-}

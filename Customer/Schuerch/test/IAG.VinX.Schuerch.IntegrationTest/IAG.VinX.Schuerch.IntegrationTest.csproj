@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\Base\Infrastructure\src\IAG.HostWindows\IAG.HostWindows.csproj"/>
+        <ProjectReference Include="..\..\..\..\Common\test\IAG.Common.IntegrationTest\IAG.Common.IntegrationTest.csproj"/>
+        <ProjectReference Include="..\..\..\..\Common\test\IAG.Common.TestHelper\IAG.Common.TestHelper.csproj"/>
+        <ProjectReference Include="..\..\..\..\VinX\test\IAG.VinX.IntegrationTest\IAG.VinX.IntegrationTest.csproj"/>
+        <ProjectReference Include="..\..\src\IAG.VinX.Schuerch\IAG.VinX.Schuerch.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="Settings\appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+</Project>

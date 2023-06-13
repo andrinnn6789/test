@@ -1,1 +1,0 @@
-﻿-- Just an empty dummy script to trigger the PostProcess "InitRefreshTokenConfig"

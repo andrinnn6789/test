@@ -1,7 +1,0 @@
-﻿BEGIN TRANSACTION;
-
-ALTER TABLE JobState ADD COLUMN "JobConfigId" BLOB NULL;
-
-UPDATE JobState SET JobConfigId=TemplateId;
-
-COMMIT;

@@ -1,0 +1,26 @@
+﻿{
+  "MockSettings": [
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/api/Core/ControlCenter/Distribution/LinkAdmin/Link/Sync"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": [
+          {
+            "Id": "38f7f47f-998d-44d6-984e-db97bca8cae9",
+            "Name": "Test Link",
+            "Url": "https://test.link",
+            "Description": "Test Description"
+          }
+        ]
+      }
+    }
+  ]
+}

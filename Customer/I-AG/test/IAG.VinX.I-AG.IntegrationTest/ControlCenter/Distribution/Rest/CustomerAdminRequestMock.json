@@ -1,0 +1,51 @@
+﻿{
+  "MockSettings": [
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/api/Core/ControlCenter/Distribution/CustomerAdmin/Customer"
+      },
+      "Response": {
+        "Status": 201,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": {
+          "Id": "68b7efca-ca3f-454e-977d-0ff767fad44b"
+        }
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "GET" ],
+        "Path": "/api/Core/ControlCenter/Distribution/CustomerAdmin/Customer"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": "[]"
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/api/Core/ControlCenter/Distribution/CustomerAdmin/Customer/68b7efca-ca3f-454e-977d-0ff767fad44b/AddProducts"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": {}
+      }
+    }
+  ]
+}

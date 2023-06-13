@@ -1,0 +1,68 @@
+{
+  "RealmConfig": {
+    "Realm": "Integrated"
+  },
+  "AuthenticationPluginData": {
+    "Roles": [
+      {
+        "Name": "Admin"
+      },
+      {
+        "Name": "Azure"
+      },
+      {
+        "Name": "Web"
+      }
+    ],
+    "RoleClaims": [
+      {
+        "RoleName": "Admin",
+        "ScopeName": "Base.Admin",
+        "ClaimName": "General",
+        "AllowedPermissions": 31
+      },
+      {
+        "RoleName": "Azure",
+        "ScopeName": "ibW-Azure.REST",
+        "ClaimName": "General",
+        "AllowedPermissions": 31
+      },
+      {
+        "RoleName": "Web",
+        "ScopeName": "ibW-Web.REST",
+        "ClaimName": "General",
+        "AllowedPermissions": 31
+      }
+    ],
+    "Users": [
+      {
+        "Name": "Azure",
+        "Password": "<pwd>"
+      },
+      {
+        "Name": "Web",
+        "Password": "<pwd>"
+      },
+      {
+        "Name": "Support",
+        "Password": "<pwd>"
+      }
+    ],
+    "UserRoles": [
+      {
+        "RoleName": "Admin",
+        "UserName": "Support"
+      },
+      {
+        "RoleName": "Azure",
+        "UserName": "Azure"
+      },
+      {
+        "RoleName": "Web",
+        "UserName": "Web"
+      }
+    ],
+    "UserClaims": []
+  },
+  "Type": "IAG.IdentityServer.Configuration.Model.Realm.RealmImportExport"
+}

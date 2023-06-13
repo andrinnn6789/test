@@ -1,0 +1,33 @@
+﻿{
+  "RealmConfig": {
+    "Realm": "Integrated"
+  },
+  "AuthenticationPluginData": {
+    "Roles": [
+      {
+        "Name": "S1M"
+      }
+    ],
+    "RoleClaims": [
+      {
+        "RoleName": "S1M",
+        "ScopeName": "ZweifelS1M.REST",
+        "ClaimName": "General",
+        "AllowedPermissions": 31
+      }
+    ],
+    "Users": [
+      {
+        "Name": "S1M",
+        "InitPassword": "<pwd>"
+      }
+    ],
+    "UserRoles": [
+      {
+        "RoleName": "S1M",
+        "UserName": "S1M"
+      }
+    ]
+  },
+  "Type": "IAG.IdentityServer.Configuration.Model.Realm.RealmImportExport"
+}

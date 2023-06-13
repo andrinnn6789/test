@@ -1,5 +1,0 @@
-﻿BEGIN TRANSACTION;
-
-ALTER TABLE "User" ADD COLUMN "Culture" Text NULL;
-
-COMMIT;

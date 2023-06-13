@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <IsPackable>false</IsPackable>
+    <GenerateProgramFile>false</GenerateProgramFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="coverlet.collector" Version="3.2.0">
+	  <PrivateAssets>all</PrivateAssets>
+	  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	</PackageReference>
+	<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+	<PackageReference Include="Moq" Version="4.18.2" />
+	<PackageReference Include="NLog" Version="5.0.5" />
+	<PackageReference Include="NLog.Web.AspNetCore" Version="5.1.5" />
+	<PackageReference Include="Npgsql" Version="6.0.7" />
+	<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
+	<PackageReference Include="ObjectDumper.NET" Version="3.5.2" />
+	<PackageReference Include="PdfSharpCore" Version="1.3.41" />
+	<PackageReference Include="SharpZipLib" Version="1.4.1" />
+	<PackageReference Include="SixLabors.ImageSharp" Version="2.1.3" />
+	<PackageReference Include="SkiaSharp" Version="2.88.3" />
+	<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	<PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.4.0" />
+	<PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.1" />
+	<PackageReference Include="System.Data.Odbc" Version="6.0.1" />
+	<PackageReference Include="xunit" Version="2.4.2" />
+	<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+	<PackageReference Include="ZUGFeRD-csharp" Version="9.0.0" />
+	<PackageReference Include="ZXing.Net" Version="0.16.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Base\Infrastructure\src\IAG.HostWindows\IAG.HostWindows.csproj" />
+    <ProjectReference Include="..\..\..\..\Base\ProcessEngine\src\IAG.ProcessEngine\IAG.ProcessEngine.csproj" />
+    <ProjectReference Include="..\..\..\..\Common\test\IAG.Common.IntegrationTest\IAG.Common.IntegrationTest.csproj" />
+    <ProjectReference Include="..\..\..\..\Common\test\IAG.Common.TestHelper\IAG.Common.TestHelper.csproj" />
+    <ProjectReference Include="..\..\..\..\VinX\test\IAG.VinX.IntegrationTest\IAG.VinX.IntegrationTest.csproj" />
+    <ProjectReference Include="..\..\src\IAG.VinX.Chardonnens\IAG.VinX.Chardonnens.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Settings\appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

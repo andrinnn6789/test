@@ -1,0 +1,135 @@
+﻿{
+  "MockSettings": [
+    {
+      "Request": {
+        "Methods": [ "GET" ],
+        "Path": "/api/Core/ControlCenter/Distribution/ProductAdmin/Product"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": "[]"
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "GET" ],
+        "Path": "/api/Core/ControlCenter/Distribution/ProductAdmin/Release"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": "[]"
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/api/Core/ControlCenter/Distribution/ProductAdmin/Product",
+        "BodyContains": "TestProduct"
+      },
+      "Response": {
+        "Status": 201,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": { "Id": "1551749f-5282-419f-aea2-81b7e9772781" }
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/api/Core/ControlCenter/Distribution/ProductAdmin/Product/1551749f-5282-419f-aea2-81b7e9772781/Release"
+      },
+      "Response": {
+        "Status": 201,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": {
+          "Id": "1b59683d-d4df-4595-9b34-be24d0b56e8e",
+          "ProductId": "1551749f-5282-419f-aea2-81b7e9772781"
+        }
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/api/Core/ControlCenter/Distribution/ProductAdmin/Product/1551749f-5282-419f-aea2-81b7e9772781/Release/1b59683d-d4df-4595-9b34-be24d0b56e8e/AddFiles"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": [
+          {
+            "ID": "52e87aff-bbc6-4dbb-91ae-a282b54c3187",
+            "Name": "IAG.VinX.IAG.IntegrationTest.dll",
+            "FileVersion": "1.0.0.0",
+            "ProductVersion": "1.0.0.0"
+          }
+        ]
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/api/Core/ControlCenter/Distribution/ProductAdmin/File/52e87aff-bbc6-4dbb-91ae-a282b54c3187"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": {}
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/api/Core/ControlCenter/Distribution/ProductAdmin/Product/1551749f-5282-419f-aea2-81b7e9772781/Release/1b59683d-d4df-4595-9b34-be24d0b56e8e/Approve"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": {}
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/api/Core/ControlCenter/Distribution/ProductAdmin/Product/1551749f-5282-419f-aea2-81b7e9772781/Release/1b59683d-d4df-4595-9b34-be24d0b56e8e/Remove"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": {}
+      }
+    }
+  ]
+}

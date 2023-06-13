@@ -1,0 +1,15 @@
+_gpoid;16308331
+_platform;5500
+_cid;999999
+_partnerid;
+_date;2021-04-09T07:15:20+02:00
+_poscount;4
+delivery_date;2021-04-21T00:00:00+02:00
+reference;
+comment;
+lnbrr;lnbra;quant;anbr;unit
+1;48069779;16;220;FLA
+2;48069780;3;3733;FS
+3;48069781;4;7954;CT
+4;48073348;10;2793;STK
+35274bd887c467502fa15e3f3099dd34

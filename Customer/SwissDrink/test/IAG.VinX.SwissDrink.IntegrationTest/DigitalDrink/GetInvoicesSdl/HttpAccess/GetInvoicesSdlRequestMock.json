@@ -1,0 +1,48 @@
+﻿{
+  "MockSettings": [
+    {
+      "Request": {
+        "Methods": [ "GET" ],
+        "PathStartsWith": "/mid/invoice-sdl"
+      },
+      "Response": {
+        "Status": 200,
+        "Body": {
+          "count":  1,
+          "results": [
+            {
+              "id": 42,
+              "wholesaler_gln": null,
+              "customer_number": "theCustomerNumber",
+              "invoice_number": "theInvoiceNumber",
+              "invoice_date": "2021-10-27",
+              "delivery_number": "1021301",
+              "delivery_date": "2021-11-16T00:00:00+01:00",
+              "order_date": "2021-11-16T00:00:00+01:00",
+              "created_at": "2021-10-27T12:34:56.789Z",
+              "payment_reference_number": null,
+              "items": [
+                {
+                  "sequence": 1,
+                  "number": "theArticleNumber",
+                  "number_sdl": "theArticleNumberSdl",
+                  "name": "theArticle",
+                  "type": "GOODS"
+                }
+              ],
+              "extras": [
+                {
+                  "number": "thePackageNumber",
+                  "number_sdl": "thePackageNumberSdl",
+                  "name": "thePackage",
+                  "quantity_delivered": 3,
+                  "quantity_returned": 2
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

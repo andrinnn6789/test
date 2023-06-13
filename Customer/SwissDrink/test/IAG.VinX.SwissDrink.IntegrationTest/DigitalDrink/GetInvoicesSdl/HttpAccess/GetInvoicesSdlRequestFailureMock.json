@@ -1,0 +1,14 @@
+﻿{
+  "MockSettings": [
+    {
+      "Request": {
+        "Methods": [ "GET" ],
+        "PathStartsWith": "/mid/invoice-sdl"
+      },
+      "Response": {
+        "Status": 400,
+        "Body": "BadRequest"
+      }
+    }
+  ]
+}

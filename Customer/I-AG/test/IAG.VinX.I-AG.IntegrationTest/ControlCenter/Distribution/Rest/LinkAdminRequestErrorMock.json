@@ -1,0 +1,13 @@
+﻿{
+  "MockSettings": [
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/api/Core/ControlCenter/Distribution/LinkAdmin/Link/Sync"
+      },
+      "Response": {
+        "Status": 500
+      }
+    }
+  ]
+}

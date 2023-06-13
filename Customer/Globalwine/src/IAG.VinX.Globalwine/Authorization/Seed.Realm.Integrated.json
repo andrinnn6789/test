@@ -1,0 +1,21 @@
+{
+    "RealmConfig": {
+        "Realm": "Integrated"
+     },
+    "AuthenticationPluginData": {
+      "Users": [
+        {
+          "Name": "Zynex",
+          "Password": "<pwd>"
+        }
+      ],
+      "UserRoles": [
+        {
+          "RoleName": "Shop",
+          "UserName": "Zynex"
+        }
+      ],
+        "UserClaims": []
+    },
+    "Type": "IAG.IdentityServer.Configuration.Model.Realm.RealmImportExport"
+}

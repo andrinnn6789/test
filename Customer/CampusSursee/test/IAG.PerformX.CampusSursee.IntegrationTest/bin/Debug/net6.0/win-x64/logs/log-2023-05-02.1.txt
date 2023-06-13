@@ -1,0 +1,80 @@
+2023-05-02 15:53:52.2257|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.AtlasMitarbeiter
+2023-05-02 15:53:52.3195|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.AtlasAdresse
+2023-05-02 15:53:52.3195|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.UserDatabaseAuthentication
+2023-05-02 15:53:56.7223|DEBUG|IAG.Infrastructure.Middleware.LoggingMiddleware|Received POST request '0HMQB2IM5TC7T:00000002' to 'http://localhost:8085/api/Core/CampusSursee/Registration/Registration with 600 bytes of data of type application/json;odata.metadata=minimal;odata.streaming=trueAccept: application/json;odata.metadata=minimal;odata.streaming=true
+Connection: keep-alive
+Host: localhost:8085
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-GB,en
+Content-Type: application/json;odata.metadata=minimal;odata.streaming=true
+Origin: http://localhost:8085
+Referer: http://localhost:8085/swagger/index.html?urls.primaryName=I-AG%20Campus%20Sursee%20API
+Content-Length: 600
+sec-ch-ua: "Chromium";v="112", "Brave";v="112", "Not:A-Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Sec-GPC: 1
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+{
+  "Id": 0,
+  "AddressId": 0,
+  "CompanyAddressId": 0,
+  "BillingAddressId": 0,
+  "RegistrationAddressId": 0,
+  "RegistrationCompanyAddressId": 0,
+  "RegistrationBillingAddressId": 0,
+  "KstCustomer": "string",
+  "HrAddressId": 0,
+  "EventId": 0,
+  "NumberOfAttendees": 0,
+  "AdditionalAttendees": "string",
+  "Remark": "string",
+  "EmailForEventDocuments": "string",
+  "EmailForEventDocumentsCc": "string",
+  "WebLinkForUserDocuments": "string",
+  "OvernightStay": 0,
+  "Arrival": 0,
+  "WithLunch": true,
+  "WithSupper": true,
+  "OnWaitingList": true,
+  "IsProcessed": true,
+  "RegistrationId": 0
+}
+
+2023-05-02 15:53:57.0680|DEBUG|IAG.Common.DataLayerSybase.SybaseConnection|Execute SQL '
+                SET TEMPORARY OPTION CONNECTION_AUTHENTICATION=
+                'Company=Opus Software AG;Application=Atlas Framework;Signature=000fa55157edb8e14d818eb4fe3db41447146f1571g7b927fa0b2d30a756f0d29b8fd5e7a1b91124be6''
+2023-05-02 15:53:57.0998|DEBUG|IAG.Common.DataLayerSybase.SybaseConnection|Execute SQL '
+                        SELECT Sys_Version, Sys_Languages FROM xStateSystem WHERE Sys_Tag = 'Main';
+                        SELECT COUNT(1) FROM SYS.SYSCATALOG WHERE SYS.SYSCATALOG.tabletype = 'TABLE' AND SYS.SYSCATALOG.tname = 'BEREICH';
+                        SELECT Mit_Id FROM Mitarbeiter WHERE Mit_Login = 'Support';
+                        SELECT Sys_Tag FROM xStateSystem WHERE Sys_Tag IN ('Online','DigitalDrink')'
+2023-05-02 15:53:57.1796|DEBUG|IAG.Common.DataLayerSybase.SybaseConnection|Execute SQL '
+                WITH AtlasResourceBase (
+                    Name, Language, Translation
+                ) AS (
+                SELECT PhysMetaAtt_NameInDB, 'de', PhysMetaAtt_NameForUser
+                FROM PhysMetaAttribute       
+                WHERE TRIM(ISNULL(PhysMetaAtt_NameInDB, '')) != '' 
+                ),
+                AtlasResource (
+                    Name, Language, Translation, RowNum
+                ) AS (
+                SELECT 
+                    'Atlas.' + Name, Language, Translation, 
+                    ROW_NUMBER() over (partition by Name, Language order by Name, Language)
+                FROM AtlasResourceBase
+                WHERE Translation IS NOT NULL
+                )
+                SELECT DISTINCT Name, Language, Translation 
+                FROM AtlasResource 
+                WHERE RowNum = 1 
+                ORDER BY Name'
+2023-05-02 15:53:57.3449|DEBUG|IAG.Common.DataLayerSybase.SybaseConnection|Execute SQL '
+                SET TEMPORARY OPTION CONNECTION_AUTHENTICATION=
+                'Company=Opus Software AG;Application=Atlas Framework;Signature=000fa55157edb8e14d818eb4fe3db41447146f1571g7b927fa0b2d30a756f0d29b8fd5e7a1b91124be6''
+2023-05-02 15:53:57.5508|DEBUG|IAG.Common.DataLayerSybase.SybaseConnection|Execute SQL 'INSERT INTO OnlineVertrag(Ver_AdresseID,Ver_SASGeschaeftsAdresseID,Ver_SASRechnungsadresseID,Ver_OnlineAdresseID,Ver_SASOnlineGeschaeftsAdresseID,Ver_SASOnlineRechnungsadresseID,Ver_KSTKunde,Ver_AdresseIDHRPerson,Ver_VertragDefID,Ver_Personen,Ver_NamenPersonen,Ver_Bemerkungen,Ver_EMailZiel1,Ver_EMailZiel2,Ver_DokumenteWeb,Ver_CSUebernachtung,Ver_CSAnreise,Ver_CSMahlzeitenMittagessen,Ver_CSMahlzeitenAbendessen,Ver_CSaufWarteliste,Ver_Verarbeitet,Ver_VertragID)
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);SELECT @@identity' with parameters: 0,0,0,0,0,0,"string",0,0,0,"string","string","string","string","string",0,0,-1,-1,-1,True,0

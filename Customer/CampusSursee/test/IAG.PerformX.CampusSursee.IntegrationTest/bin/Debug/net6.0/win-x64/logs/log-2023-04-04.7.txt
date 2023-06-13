@@ -1,0 +1,3 @@
+2023-04-04 13:56:57.6257|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.AtlasMitarbeiter
+2023-04-04 13:56:57.6830|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.AtlasAdresse
+2023-04-04 13:56:57.6830|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.UserDatabaseAuthentication

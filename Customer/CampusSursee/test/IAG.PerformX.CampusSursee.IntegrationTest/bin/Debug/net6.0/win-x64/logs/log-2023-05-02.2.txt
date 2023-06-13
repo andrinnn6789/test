@@ -1,0 +1,74 @@
+2023-05-02 15:58:27.6715|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.AtlasMitarbeiter
+2023-05-02 15:58:27.7389|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.AtlasAdresse
+2023-05-02 15:58:27.7389|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.UserDatabaseAuthentication
+2023-05-02 15:58:31.6487|DEBUG|IAG.Infrastructure.Middleware.LoggingMiddleware|Received GET request '0HMQB2L84140V:00000002' to 'http://localhost:8085/api/Core/CampusSursee/Address/Registration?%24top=5 with 0 bytes of data of type Accept: application/json;odata.metadata=minimal;odata.streaming=true
+Connection: keep-alive
+Host: localhost:8085
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-GB,en
+Referer: http://localhost:8085/swagger/index.html?urls.primaryName=I-AG%20Campus%20Sursee%20API
+sec-ch-ua: "Chromium";v="112", "Brave";v="112", "Not:A-Brand";v="99"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Sec-GPC: 1
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+
+2023-05-02 15:58:31.9451|DEBUG|IAG.Common.DataLayerSybase.SybaseConnection|Execute SQL '
+                SET TEMPORARY OPTION CONNECTION_AUTHENTICATION=
+                'Company=Opus Software AG;Application=Atlas Framework;Signature=000fa55157edb8e14d818eb4fe3db41447146f1571g7b927fa0b2d30a756f0d29b8fd5e7a1b91124be6''
+2023-05-02 15:58:31.9747|DEBUG|IAG.Common.DataLayerSybase.SybaseConnection|Execute SQL '
+                        SELECT Sys_Version, Sys_Languages FROM xStateSystem WHERE Sys_Tag = 'Main';
+                        SELECT COUNT(1) FROM SYS.SYSCATALOG WHERE SYS.SYSCATALOG.tabletype = 'TABLE' AND SYS.SYSCATALOG.tname = 'BEREICH';
+                        SELECT Mit_Id FROM Mitarbeiter WHERE Mit_Login = 'Support';
+                        SELECT Sys_Tag FROM xStateSystem WHERE Sys_Tag IN ('Online','DigitalDrink')'
+2023-05-02 15:58:32.0357|DEBUG|IAG.Common.DataLayerSybase.SybaseConnection|Execute SQL '
+                WITH AtlasResourceBase (
+                    Name, Language, Translation
+                ) AS (
+                SELECT PhysMetaAtt_NameInDB, 'de', PhysMetaAtt_NameForUser
+                FROM PhysMetaAttribute       
+                WHERE TRIM(ISNULL(PhysMetaAtt_NameInDB, '')) != '' 
+                ),
+                AtlasResource (
+                    Name, Language, Translation, RowNum
+                ) AS (
+                SELECT 
+                    'Atlas.' + Name, Language, Translation, 
+                    ROW_NUMBER() over (partition by Name, Language order by Name, Language)
+                FROM AtlasResourceBase
+                WHERE Translation IS NOT NULL
+                )
+                SELECT DISTINCT Name, Language, Translation 
+                FROM AtlasResource 
+                WHERE RowNum = 1 
+                ORDER BY Name'
+2023-05-02 15:58:32.2111|DEBUG|IAG.Common.DataLayerSybase.SybaseConnection|Execute SQL '
+                SET TEMPORARY OPTION CONNECTION_AUTHENTICATION=
+                'Company=Opus Software AG;Application=Atlas Framework;Signature=000fa55157edb8e14d818eb4fe3db41447146f1571g7b927fa0b2d30a756f0d29b8fd5e7a1b91124be6''
+2023-05-02 15:58:32.4635|DEBUG|IAG.Common.DataLayerSybase.SybaseConnection|Execute SQL '
+       WITH Registration (
+            Id, AddressId, BillingAddressId, KstCustomer, HrAddressId, EventId, 
+            EventParentId, NumberOfAttendees, AdditionalAttendees, Remark, EmailForEventDocuments, 
+            EmailForEventDocumentsCc, WebLinkForUserDocuments, StatusName, StatusId, RoleId, LastChange
+        ) AS (
+        SELECT 
+            Ver_ID, Ver_AdresseID, Ver_RechnungsadresseID, Ver_KSTKunde, Ver_AdresseIDHRPerson, Ver_VertragDefID, 
+            IsNull(VerDefParent.VerDef_ID, Ver_VertragDefID), Ver_Personen, Ver_NamenPersonen, Ver_Bemerkungen, Ver_EMailZiel1, 
+            Ver_EMailZiel2, Ver_DokumenteWeb , Status_Bezeichnung, Status_Id, Ver_RolleId,
+            Ver_ChangedOn        
+        FROM Vertrag
+        JOIN VertragStatus ON Status_Id = Ver_StatusId
+        JOIN Adresse Adr ON Adr.Adr_Id = Ver_AdresseID
+        LEFT OUTER JOIN VertragDefBeziehung ON EreigBez_VertragDefID = Ver_VertragDefID and EreigBez_BeziehungstypID IN (8)
+        LEFT OUTER JOIN VertragDef VerDefParent ON VerDefParent.VerDef_Id = EreigBez_GegenVertragDefID
+        WHERE Ver_BereichId = 2 AND Adr.Adr_Aktiv = -1 AND (Adr.Adr_OnlineAktiv = -1 OR Adr.Adr_AufnahmeartID = 1) 
+        )        
+        SELECT TOP ? T.Ver_Id,T.Ver_DokumenteWeb
+FROM Vertrag T
+' with parameters: 5
+2023-05-02 15:58:32.5811|DEBUG|IAG.Infrastructure.Middleware.LoggingMiddleware|TraceIdentifier:http 0HMQB2L84140V:00000002'OK' (200)
+Response Body: [{"Id":11001,"AddressId":0,"BillingAddressId":0,"HrAddressId":0,"EventId":0,"EventParentId":0,"NumberOfAttendees":0,"StatusId":0,"RoleId":0,"LastChange":"0001-01-01T00:00:00"},{"Id":11002,"AddressId":0,"BillingAddressId":0,"HrAddressId":0,"EventId":0,"EventParentId":0,"NumberOfAttendees":0,"StatusId":0,"RoleId":0,"LastChange":"0001-01-01T00:00:00"},{"Id":11003,"AddressId":0,"BillingAddressId":0,"HrAddressId":0,"EventId":0,"EventParentId":0,"NumberOfAttendees":0,"StatusId":0,"RoleId":0,"LastChange":"0001-01-01T00:00:00"},{"Id":11004,"AddressId":0,"BillingAddressId":0,"HrAddressId":0,"EventId":0,"EventParentId":0,"NumberOfAttendees":0,"StatusId":0,"RoleId":0,"LastChange":"0001-01-01T00:00:00"},{"Id":11005,"AddressId":0,"BillingAddressId":0,"HrAddressId":0,"EventId":0,"EventParentId":0,"NumberOfAttendees":0,"StatusId":0,"RoleId":0,"LastChange":"0001-01-01T00:00:00"}]
+

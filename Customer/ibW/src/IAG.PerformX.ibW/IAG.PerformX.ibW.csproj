@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Base\IdentityServer\src\IAG.IdentityServer\IAG.IdentityServer.csproj" />
+    <ProjectReference Include="..\..\..\..\Common\src\IAG.Common\IAG.Common.csproj" />
+  </ItemGroup>
+
+</Project>

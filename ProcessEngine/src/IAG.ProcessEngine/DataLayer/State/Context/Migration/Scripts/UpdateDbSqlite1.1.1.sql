@@ -1,2 +1,0 @@
-﻿
-ALTER TABLE JobState ADD COLUMN "Acknowledged" INT NOT NULL DEFAULT 0;

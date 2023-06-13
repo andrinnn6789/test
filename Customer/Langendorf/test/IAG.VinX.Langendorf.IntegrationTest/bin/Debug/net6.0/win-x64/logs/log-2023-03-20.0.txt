@@ -1,0 +1,51 @@
+2023-03-20 08:52:02.5611|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.AtlasMitarbeiter
+2023-03-20 08:52:02.6616|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.AtlasAdresse
+2023-03-20 08:52:02.6616|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.TestAtlasAdresse
+2023-03-20 08:52:02.6616|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.UserDatabaseAuthentication
+2023-03-20 08:52:04.0608|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin Common.Job.VersionInventory
+2023-03-20 08:52:04.1504|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin Common.Job.MailSender
+2023-03-20 08:52:04.1534|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin Common.Job.TransmitFiles
+2023-03-20 08:52:04.1534|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin Common.Job.ExtractFiles
+2023-03-20 08:52:04.1534|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin Common.Job.AbaSyncJob
+2023-03-20 08:52:04.1534|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin ProcessEngine.Job.Monitoring
+2023-03-20 08:52:04.1534|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin ProcessEngine.Job.Cleanup
+2023-03-20 08:52:04.1681|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.ReceiptScannerJob
+2023-03-20 08:52:04.1681|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.ObsCatalogSyncer
+2023-03-20 08:52:04.1681|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.ObsOrderConfirmer
+2023-03-20 08:52:04.1681|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.ObsOrderSyncer
+2023-03-20 08:52:04.1681|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.MoetHarvest.SalesReport
+2023-03-20 08:52:04.1681|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.MoetHarvest.InventoryReport
+2023-03-20 08:52:04.1681|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin Mobile.PictureSyncerJob
+2023-03-20 08:52:04.1852|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin IAG.Mobile.AcceptInventoryJob
+2023-03-20 08:52:04.1852|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin IAG.Mobile.CustomerExportTenantsToFile
+2023-03-20 08:52:04.1852|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin IAG.Mobile.CustomerBaseData
+2023-03-20 08:52:04.1852|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin IAG.Mobile.CustomerInventory
+2023-03-20 08:52:04.1852|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin IAG.Mobile.IagSyncer
+2023-03-20 08:52:04.1852|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.Feldschloesschen.DoOrder
+2023-03-20 08:52:04.1989|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.Markant.DownloadProducts
+2023-03-20 08:52:04.1989|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.GoDrink.DownloadMappings
+2023-03-20 08:52:04.1989|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.GoDrink.DownloadProducts
+2023-03-20 08:52:04.1989|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.DigitalDrink.UploadLiveSales
+2023-03-20 08:52:04.1989|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.DigitalDrink.UploadSales
+2023-03-20 08:52:04.1989|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.DigitalDrink.ReadOrderStatus
+2023-03-20 08:52:04.2160|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.DigitalDrink.DoOrder
+2023-03-20 08:52:04.2160|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.DigitalDrink.DownloadMappings
+2023-03-20 08:52:04.2160|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.DigitalDrink.DownloadCampaigns
+2023-03-20 08:52:04.2160|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.DigitalDrink.DownloadProducts
+2023-03-20 08:52:04.2160|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.DigitalDrink Middleware.SendInvoices
+2023-03-20 08:52:04.2305|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin VinX.Job.DigitalDrink Middleware.ImportOrders
+2023-03-20 08:52:05.1539|INFO|IAG.Infrastructure.Startup.CoreServer.ServerConfigureServices|Registering core-plugin IAG.CoreServer.MobileAdmin
+2023-03-20 08:52:05.1539|INFO|IAG.Infrastructure.Startup.CoreServer.ServerConfigureServices|Registering core-plugin IAG.CoreServer.GoDrink
+2023-03-20 08:52:05.3643|DEBUG|IAG.ProcessEngine.Startup.ServiceLifetime|PE-services started
+2023-03-20 08:52:09.5670|ERROR|IAG.Common.DataLayerSybase.SybaseConfigurator|ERROR [08001] [SAP][ODBC Driver][SQL Anywhere]Specified database not found
+2023-03-20 08:52:09.6598|DEBUG|IAG.Common.DataLayerSybase.SybaseConfigurator|   at System.Data.Odbc.OdbcConnectionHandle..ctor(OdbcConnection connection, OdbcConnectionString constr, OdbcEnvironmentHandle environmentHandle)
+   at System.Data.Odbc.OdbcConnectionOpen..ctor(OdbcConnection outerConnection, OdbcConnectionString connectionOptions)
+   at System.Data.Odbc.OdbcConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningObject)
+   at System.Data.ProviderBase.DbConnectionFactory.CreateNonPooledConnection(DbConnection owningConnection, DbConnectionPoolGroup poolGroup, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionInternal.OpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory)
+   at System.Data.Odbc.OdbcConnection.Open()
+   at IAG.Common.DataLayerSybase.SybaseConnection..ctor(String connectionString, ICommonSystemData commonSystemData, ISchemaProvider schemaProvider, IUserContext userContext, ILogger logger) in C:\Users\ap\source\repos\IAG\Common\src\IAG.Common\DataLayerSybase\SybaseConnection.cs:line 45
+   at IAG.Common.DataLayerSybase.SybaseConnectionFactory.CreateConnection(String connectionString, IUserContext userContext, ILogger logger) in C:\Users\ap\source\repos\IAG\Common\src\IAG.Common\DataLayerSybase\SybaseConnectionFactory.cs:line 64
+   at IAG.Common.DataLayerSybase.SybaseConfigurator.Config(IServiceProvider services) in C:\Users\ap\source\repos\IAG\Common\src\IAG.Common\DataLayerSybase\SybaseConfigurator.cs:line 39

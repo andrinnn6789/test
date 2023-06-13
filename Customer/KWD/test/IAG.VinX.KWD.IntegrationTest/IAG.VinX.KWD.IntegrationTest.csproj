@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+
+        <IsPackable>false</IsPackable>
+        <GenerateProgramFile>false</GenerateProgramFile>
+        <OutputType>Library</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="EPPlus" Version="6.1.0" />
+        <PackageReference Include="FileHelpers" Version="3.5.2" />
+        <PackageReference Include="FluentAssertions" Version="6.8.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
+        <PackageReference Include="SharpZipLib" Version="1.4.1" />
+        <PackageReference Include="SixLabors.ImageSharp" Version="2.1.3" />
+        <PackageReference Include="SkiaSharp" Version="2.88.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.4.0" />
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.1" />
+        <PackageReference Include="System.Data.Odbc" Version="6.0.1" />
+        <PackageReference Include="xunit" Version="2.4.2" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="3.2.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="ZUGFeRD-csharp" Version="9.0.0" />
+        <PackageReference Include="ZXing.Net" Version="0.16.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Shop\v10\DtoDirect" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Settings\appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Common\test\IAG.Common.IntegrationTest\IAG.Common.IntegrationTest.csproj" />
+      <ProjectReference Include="..\..\..\..\VinX\src\IAG.VinX.HostWindows\IAG.VinX.HostWindows.csproj" />
+      <ProjectReference Include="..\..\src\IAG.VinX.KWD\IAG.VinX.KWD.csproj" />
+    </ItemGroup>
+
+</Project>

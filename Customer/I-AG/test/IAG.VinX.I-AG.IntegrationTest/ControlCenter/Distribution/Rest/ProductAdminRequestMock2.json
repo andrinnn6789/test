@@ -1,0 +1,34 @@
+﻿{
+  "MockSettings": [
+    {
+      "Request": {
+        "Methods": [ "GET" ],
+        "Path": "/api/Core/ControlCenter/Distribution/ProductAdmin/Product"
+      },
+      "Response": {
+        "Status": 500,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": "Fails for test"
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "GET" ],
+        "Path": "/api/Core/ControlCenter/Distribution/ProductAdmin/Release"
+      },
+      "Response": {
+        "Status": 500,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": "Fails for test"
+      }
+    }
+  ]
+}
