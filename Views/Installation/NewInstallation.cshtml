@@ -1,0 +1,73 @@
+﻿@using IAG.ControlCenter.Distribution.DataLayer.Model
+@model NewInstallationViewModel
+@{
+    ViewData["Title"] = "Neue Installation";
+}
+
+<h2>Neue Installation</h2>
+
+@if (string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    string disabled = Model.InstallationJobId.HasValue ? "disabled" : null;
+
+    <form asp-action="NewInstallation">
+        <div class="form-group">
+            <label>Release:</label>
+            <select id="new-installation-release-selection" asp-for="SelectedRelease" class="form-control" disabled="@disabled">
+                @foreach (var release in Model.AvailableReleases.Where(r => r.ProductType == ProductType.IagService))
+                {
+                    var customerExtension = Model.AvailableReleases.FirstOrDefault(r =>
+                        r.ProductType == ProductType.CustomerExtension && r.DependsOnProductId == release.ProductId && r.ReleaseVersion == release.ReleaseVersion);
+                    var releaseDescription = $"{release.ProductName} - {release.ReleaseVersion}";
+                    if (customerExtension != null)
+                    {
+                        releaseDescription += $" (inkl. Kundenerweiterung '{customerExtension.ProductName}')";
+                    }
+                    <option value="@release.ReleaseId">@releaseDescription</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Standardkonfiguration:</label>
+            <select asp-for="SelectedConfiguration" class="form-control" disabled="@disabled">
+                @foreach (var release in Model.AvailableReleases.Where(r => r.ProductType == ProductType.ConfigTemplate))
+                {
+                    <option value="@release.ReleaseId">@release.ProductName - @release.Plattform</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Instanz:</label>
+            <input type="text" asp-for="SelectedInstance" class="form-control" list="instances" disabled="@disabled" />
+            <span asp-validation-for="SelectedInstance" class="text-danger"></span>
+            <datalist id="instances">
+                @foreach (var instance in Model.SuggestedInstances)
+                {
+                    <option value="@instance">@instance</option>
+                }
+            </datalist>
+        </div>
+
+        @if (disabled == null)
+        {
+            <input type="submit" class="btn btn-primary" value="Ok" />
+            <a asp-action="Index" class="btn btn-secondary">Abbrechen</a>
+        }
+    </form>
+
+    @if (Model.InstallationJobId.HasValue)
+    {
+        @await Html.PartialAsync("_JobLog", new JobLogModel()
+        {
+            JobId = Model.InstallationJobId.Value,
+            JobActionName = "Installation",
+            BackLinkAction = "Index"
+        })
+    }
+}
+else
+{
+    <p>
+        <div class="alert alert-danger">@Model.ErrorMessage</div>
+    </p>
+}

@@ -1,0 +1,57 @@
+﻿@using IAG.ControlCenter.Distribution.DataLayer.Model
+@model UpdateInstallationViewModel
+@{
+    ViewData["Title"] = "Installation aktualisieren";
+}
+
+<h2>Installation aktualisieren</h2>
+
+@if (string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    string disabled = Model.InstallationJobId.HasValue ? "disabled" : null;
+
+    <form asp-action="UpdateInstallation">
+        <div class="form-group">
+            <label>Release:</label>
+            <select asp-for="SelectedRelease" class="form-control" disabled="@disabled">
+                @foreach (var release in Model.AvailableReleases.Where(r => r.ProductType == ProductType.IagService))
+                {
+                    var customerExtension = Model.AvailableReleases.FirstOrDefault(r =>
+                        r.ProductType == ProductType.CustomerExtension && r.DependsOnProductId == release.ProductId && r.ReleaseVersion == release.ReleaseVersion);
+                    var releaseDescription = $"{release.ProductName} - {release.ReleaseVersion}";
+                    if (customerExtension != null)
+                    {
+                        releaseDescription += $" (inkl. Kundenerweiterung '{customerExtension.ProductName}')";
+                    }
+                    <option value="@release.ReleaseId">@releaseDescription</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Instanz:</label>
+            <input type="text" readonly="readonly" asp-for="SelectedInstance" class="form-control" disabled="@disabled" />
+        </div>
+
+        @if (disabled == null)
+        {
+            <input type="submit" class="btn btn-primary" value="Ok" />
+            <a asp-action="Index" class="btn btn-secondary">Abbrechen</a>
+        }
+    </form>
+
+    @if (Model.InstallationJobId.HasValue)
+    {
+        @await Html.PartialAsync("_JobLog", new JobLogModel()
+        {
+            JobId = Model.InstallationJobId.Value,
+            JobActionName = "Update",
+            BackLinkAction = "Index"
+        })
+    }
+}
+else
+{
+    <p>
+        <div class=" alert alert-danger">@Model.ErrorMessage</div>
+    </p>
+}

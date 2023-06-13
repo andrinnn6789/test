@@ -1,0 +1,51 @@
+﻿@model TransferInstallationViewModel
+@{
+    ViewData["Title"] = "Installation transferieren";
+}
+
+<h2>Installation transferieren</h2>
+
+@if (string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    string disabled = Model.TransferJobId.HasValue ? "disabled" : null;
+
+    <form asp-action="TransferInstallation">
+        <input type="hidden" asp-for="ProductName" />
+        <input type="hidden" asp-for="TargetServiceName" />
+        <div class="form-group">
+            <label>Quell-Instanz:</label>
+            <select asp-for="SourceInstanceName" class="form-control" disabled="@disabled">
+                @foreach (var instance in Model.AvailableSourceInstances)
+                {
+                    <option value="@instance.InstanceName">@instance.InstanceName</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Ziel-Instanz:</label>
+            <input type="text" readonly="readonly" asp-for="TargetInstanceName" class="form-control" disabled="@disabled" />
+        </div>
+
+        @if (disabled == null)
+        {
+            <input type="submit" class="btn btn-primary" value="Ok"/>
+            <a asp-action="Index" class="btn btn-secondary">Abbrechen</a>
+        }
+    </form>
+
+    @if (Model.TransferJobId.HasValue)
+    {
+        @await Html.PartialAsync("_JobLog", new JobLogModel()
+        {
+            JobId = Model.TransferJobId.Value,
+            JobActionName = "Transfer",
+            BackLinkAction = "Index"
+        })
+    }
+}
+else
+{
+    <p>
+        <div class=" alert alert-danger">@Model.ErrorMessage</div>
+    </p>
+}
