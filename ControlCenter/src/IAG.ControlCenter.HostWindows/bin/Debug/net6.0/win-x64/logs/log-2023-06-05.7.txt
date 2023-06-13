@@ -1,0 +1,1823 @@
+2023-06-05 15:23:01.8217|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.UserDatabaseAuthentication
+2023-06-05 15:23:16.6954|DEBUG|IAG.Infrastructure.Middleware.LoggingMiddleware|Received GET request '0HMR5P02R3EGJ:00000002' to 'http://localhost:8086/swagger/index.html?urls.primaryName=I-AG%20Mobile%20API%20v2.0 with 0 bytes of data of type Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8
+Connection: keep-alive
+Host: localhost:8086
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-GB,en
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+sec-ch-ua: "Not.A/Brand";v="8", "Chromium";v="114", "Brave";v="114"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Sec-GPC: 1
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+
+2023-06-05 15:23:16.8238|DEBUG|IAG.Infrastructure.Middleware.LoggingMiddleware|TraceIdentifier:http 0HMR5P02R3EGJ:00000002'OK' (200)
+Response Body: <!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Swagger UI</title>
+    <link rel="stylesheet" type="text/css" href="./swagger-ui.css">
+    <link rel="icon" type="image/png" href="./favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./favicon-16x16.png" sizes="16x16" />
+    <style>
+
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            background: #fafafa;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div id="swagger-ui"></div>
+
+    <!-- Workaround for https://github.com/swagger-api/swagger-editor/issues/1371 -->
+    <script>
+        if (window.navigator.userAgent.indexOf("Edge") > -1) {
+            console.log("Removing native Edge fetch in favor of swagger-ui's polyfill")
+            window.fetch = undefined;
+        }
+    </script>
+
+    <script src="./swagger-ui-bundle.js"></script>
+    <script src="./swagger-ui-standalone-preset.js"></script>
+    <script>
+        /* Source: https://gist.github.com/lamberta/3768814
+         * Parse a string function definition and return a function object. Does not use eval.
+         * @param {string} str
+         * @return {function}
+         *
+         * Example:
+         *  var f = function (x, y) { return x * y; };
+         *  var g = parseFunction(f.toString());
+         *  g(33, 3); //=> 99
+         */
+        function parseFunction(str) {
+            if (!str) return void (0);
+
+            var fn_body_idx = str.indexOf('{'),
+                fn_body = str.substring(fn_body_idx + 1, str.lastIndexOf('}')),
+                fn_declare = str.substring(0, fn_body_idx),
+                fn_params = fn_declare.substring(fn_declare.indexOf('(') + 1, fn_declare.lastIndexOf(')')),
+                args = fn_params.split(',');
+
+            args.push(fn_body);
+
+            function Fn() {
+                return Function.apply(this, args);
+            }
+            Fn.prototype = Function.prototype;
+
+            return new Fn();
+        }
+
+        window.onload = function () {
+            var configObject = JSON.parse('{"urls":[{"url":"/swagger/ControlCenter/swagger.json","name":"I-AG Control Center Api"},{"url":"/swagger/Base/swagger.json","name":"I-AG Base API v1.0"},{"url":"/swagger/App/swagger.json","name":"I-AG Mobile API v1.0"},{"url":"/swagger/AppV20/swagger.json","name":"I-AG Mobile API v2.0"}],"deepLinking":false,"persistAuthorization":false,"displayOperationId":false,"defaultModelsExpandDepth":1,"defaultModelExpandDepth":1,"defaultModelRendering":"example","displayRequestDuration":false,"docExpansion":"list","showExtensions":false,"showCommonExtensions":false,"supportedSubmitMethods":["get","put","post","delete","options","head","patch","trace"],"tryItOutEnabled":false}');
+            var oauthConfigObject = JSON.parse('{"scopeSeparator":" ","scopes":[],"useBasicAuthenticationWithAccessCodeGrant":false,"usePkceWithAuthorizationCodeGrant":false}');
+
+            // Workaround for https://github.com/swagger-api/swagger-ui/issues/5945
+            configObject.urls.forEach(function (item) {
+                if (item.url.startsWith("http") || item.url.startsWith("/")) return;
+                item.url = window.location.href.replace("index.html", item.url).split('#')[0];
+            });
+
+            // If validatorUrl is not explicitly provided, disable the feature by setting to null
+            if (!configObject.hasOwnProperty("validatorUrl"))
+                configObject.validatorUrl = null
+
+            // If oauth2RedirectUrl isn't specified, use the built-in default
+            if (!configObject.hasOwnProperty("oauth2RedirectUrl"))
+                configObject.oauth2RedirectUrl = (new URL("oauth2-redirect.html", window.location.href)).href;
+
+            // Apply mandatory parameters
+            configObject.dom_id = "#swagger-ui";
+            configObject.presets = [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset];
+            configObject.layout = "StandaloneLayout";
+
+            // Parse and add interceptor functions
+            var interceptors = JSON.parse('{"RequestInterceptorFunction":null,"ResponseInterceptorFunction":null}');
+            if (interceptors.RequestInterceptorFunction)
+                configObject.requestInterceptor = parseFunction(interceptors.RequestInterceptorFunction);
+            if (interceptors.ResponseInterceptorFunction)
+                configObject.responseInterceptor = parseFunction(interceptors.ResponseInterceptorFunction);
+
+            // Begin Swagger UI call region
+
+            const ui = SwaggerUIBundle(configObject);
+
+            ui.initOAuth(oauthConfigObject);
+
+            // End Swagger UI call region
+
+            window.ui = ui
+        }
+    </script>
+</body>
+</html>
+
+
+2023-06-05 15:23:17.0910|DEBUG|IAG.Infrastructure.Middleware.LoggingMiddleware|Received GET request '0HMR5P02R3EGJ:00000003' to 'http://localhost:8086/swagger/ControlCenter/swagger.json with 0 bytes of data of type Accept: application/json,*/*
+Connection: keep-alive
+Host: localhost:8086
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-GB,en
+Referer: http://localhost:8086/swagger/index.html?urls.primaryName=I-AG%20Mobile%20API%20v2.0
+sec-ch-ua: "Not.A/Brand";v="8", "Chromium";v="114", "Brave";v="114"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Sec-GPC: 1
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+
+2023-06-05 15:23:17.3753|DEBUG|IAG.Infrastructure.Middleware.LoggingMiddleware|TraceIdentifier:http 0HMR5P02R3EGJ:00000003'OK' (200)
+Response Body: {
+  "openapi": "3.0.1",
+  "info": {
+    "title": "I-AG Control Center Api",
+    "description": "I-AG Control Center Api",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Core/ControlCenter/Mobile/LicenceApp/Check": {
+      "post": {
+        "tags": [
+          "Core"
+        ],
+        "summary": "Checks the validity of a license.",
+        "description": "This endpoint allows checking the validity of a license based on the provided license request.\r\nThe license request contains the necessary information for license verification.",
+        "requestBody": {
+          "description": "The license request containing the license information.",
+          "content": {
+            "application/json;odata.metadata=minimal;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=minimal": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=full": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=none": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "If the license is successfully checked.",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the license request is null."
+          }
+        }
+      }
+    },
+    "/api/Core/ControlCenter/Mobile/LicenceApp/Free": {
+      "post": {
+        "tags": [
+          "Core"
+        ],
+        "summary": "Frees a license.",
+        "description": "This endpoint allows freeing a license based on the provided license request.\r\nThe license request contains the necessary information for freeing the license.",
+        "requestBody": {
+          "description": "The license request containing the license information.",
+          "content": {
+            "application/json;odata.metadata=minimal;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=minimal": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=full": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.metadata=none": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "If the license is successfully freed.",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LicenceFreeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the license request is null."
+          }
+        }
+      }
+    },
+    "/api/Core/ControlCenter/Mobile/LicenceApp/GetFlat": {
+      "get": {
+        "tags": [
+          "Core"
+        ],
+        "summary": "Retrieves a flat list of translations.",
+        "description": "This endpoint retrieves a flat list of translations based on the specified culture.\r\nThe flat list contains translations with the specified culture and their corresponding values.",
+        "parameters": [
+          {
+            "name": "culture",
+            "in": "query",
+            "description": "The culture code for filtering translations.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the flat list of translations.",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TranslationFlat"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Core/ControlCenter/Mobile/LicenceApp/RequestToken": {
+      "post": {
+        "tags": [
+          "Core"
+        ],
+        "summary": "Requests a token for authentication.",
+        "description": "This endpoint allows anonymous access and is used to request a token for authentication.\r\nThe token is generated based on the provided request token parameter.",
+        "requestBody": {
+          "description": "The request token parameter containing necessary information for token generation.",
+          "content": {
+            "application/json;odata.metadata=minimal;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "application/json;odata.metadata=minimal": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "application/json;odata.metadata=full": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "application/json;odata.metadata=none": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "application/json;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "application/json;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SimpleRequestTokenParameter"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "If the request token is successfully generated.",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestTokenResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the request token parameter is null."
+          }
+        }
+      }
+    },
+    "/api/Core/ControlCenter/Mobile/LicenceSync/Sync": {
+      "post": {
+        "tags": [
+          "Core"
+        ],
+        "summary": "Synchronizes mobile licences with remote systems.",
+        "description": "This endpoint allows synchronization of mobile licences with remote systems.\r\nIt updates the systems based on the provided licence sync request, removing any deleted entries.\r\nThe method returns a list of changed mobile licences as a result of the synchronization.",
+        "requestBody": {
+          "description": "The licence sync request containing the changes to be synchronized.",
+          "content": {
+            "application/json;odata.metadata=minimal;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=minimal": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=full": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=none": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns the list of changed mobile licences.",
+            "content": {
+              "application/json;odata.metadata=minimal;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "application/json;odata.metadata=minimal;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "application/json;odata.metadata=minimal": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "application/json;odata.metadata=full": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "application/json;odata.metadata=none": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "application/json;odata.streaming=true": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "application/json;odata.streaming=false": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "application/octet-stream": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MobileLicence"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the licence sync request is null."
+          }
+        }
+      }
+    },
+    "/api/Core/ControlCenter/Mobile/LicenceSync/Update": {
+      "post": {
+        "tags": [
+          "Core"
+        ],
+        "summary": "Updates systems with the provided licence sync data.",
+        "description": "This endpoint is used to update systems with the licence sync data provided in the request.\r\nIt performs the necessary operations to add and update the systems based on the provided licence sync data.",
+        "requestBody": {
+          "description": "The licence sync data containing the changes to be applied.",
+          "content": {
+            "application/json;odata.metadata=minimal;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=minimal;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=minimal": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=full;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=full": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=none;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.metadata=none": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.streaming=true": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json;odata.streaming=false": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenceSync"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Indicates a successful update operation."
+          },
+          "400": {
+            "description": "If the licence sync data is null."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Backend": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "Url": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "SyncInterval": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Color": {
+            "type": "string",
+            "description": "3 byte RGB-color as string, eg. \"#EFDECD\"",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Division": {
+        "type": "object",
+        "properties": {
+          "Tenant": {
+            "$ref": "#/components/schemas/Tenant"
+          },
+          "TenantId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "Name": {
+            "maxLength": 32,
+            "type": "string",
+            "nullable": true
+          },
+          "Id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "RowVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "CreatedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "CreatedBy": {
+            "maxLength": 32,
+            "type": "string",
+            "nullable": true
+          },
+          "ChangedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ChangedBy": {
+            "maxLength": 32,
+            "type": "string",
+            "nullable": true
+          },
+          "Disabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LicenceFreeResponse": {
+        "type": "object",
+        "properties": {
+          "LicenceStatus": {
+            "$ref": "#/components/schemas/LicenceStatusAppEnum"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LicenceRequest": {
+        "type": "object",
+        "properties": {
+          "Licence": {
+            "type": "string",
+            "nullable": true
+          },
+          "DeviceInfo": {
+            "type": "string",
+            "nullable": true
+          },
+          "DeviceId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LicenceResponse": {
+        "type": "object",
+        "properties": {
+          "LicenceStatus": {
+            "$ref": "#/components/schemas/LicenceStatusAppEnum"
+          },
+          "TenantId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "Backends": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Backend"
+            },
+            "nullable": true
+          },
+          "Modules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Module"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LicenceStatusAppEnum": {
+        "enum": [
+          "New",
+          "Inuse",
+          "Revoked",
+          "Invalid"
+        ],
+        "type": "string"
+      },
+      "LicenceStatusEnum": {
+        "enum": [
+          "New",
+          "Inuse",
+          "Revoked",
+          "Reset"
+        ],
+        "type": "string"
+      },
+      "LicenceSync": {
+        "type": "object",
+        "properties": {
+          "Tenants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tenant"
+            },
+            "nullable": true
+          },
+          "Licences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MobileLicence"
+            },
+            "nullable": true
+          },
+          "LicenceUsers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            },
+            "nullable": true
+          },
+          "Installations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MobileInstallation"
+            },
+            "nullable": true
+          },
+          "Modules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MobileModule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MobileInstallation": {
+        "type": "object",
+        "properties": {
+          "Url": {
+            "type": "string",
+            "nullable": true
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "SyncInterval": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Color": {
+            "type": "string",
+            "description": "3 byte RGB-color as string, eg. \"#EFDECD\"",
+            "nullable": true
+          },
+          "Tenant": {
+            "$ref": "#/components/schemas/Tenant"
+          },
+          "TenantId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "Division": {
+            "$ref": "#/components/schemas/Division"
+          },
+          "DivisionId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "Id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "RowVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "CreatedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "CreatedBy": {
+            "maxLength": 32,
+            "type": "string",
+            "nullable": true
+          },
+          "ChangedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ChangedBy": {
+            "maxLength": 32,
+            "type": "string",
+            "nullable": true
+          },
+          "Disabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MobileLicence": {
+        "type": "object",
+        "properties": {
+          "Licence": {
+            "type": "string",
+            "nullable": true
+          },
+          "LicenceStatus": {
+            "$ref": "#/components/schemas/LicenceStatusEnum"
+          },
+          "DeviceInfo": {
+            "type": "string",
+            "nullable": true
+          },
+          "DeviceId": {
+            "type": "string",
+            "nullable": true
+          },
+          "Tenant": {
+            "$ref": "#/components/schemas/Tenant"
+          },
+          "TenantId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "Division": {
+            "$ref": "#/components/schemas/Division"
+          },
+          "DivisionId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "Id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "RowVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "CreatedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "CreatedBy": {
+            "maxLength": 32,
+            "type": "string",
+            "nullable": true
+          },
+          "ChangedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ChangedBy": {
+            "maxLength": 32,
+            "type": "string",
+            "nullable": true
+          },
+          "Disabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MobileModule": {
+        "type": "object",
+        "properties": {
+          "Licence": {
+            "type": "string",
+            "nullable": true
+          },
+          "ModuleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "LicencedUntil": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "Tenant": {
+            "$ref": "#/components/schemas/Tenant"
+          },
+          "TenantId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "Division": {
+            "$ref": "#/components/schemas/Division"
+          },
+          "DivisionId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "Id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "RowVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "CreatedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "CreatedBy": {
+            "maxLength": 32,
+            "type": "string",
+            "nullable": true
+          },
+          "ChangedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ChangedBy": {
+            "maxLength": 32,
+            "type": "string",
+            "nullable": true
+          },
+          "Disabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Module": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "ValidUntil": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RequestTokenResponse": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "nullable": true
+          },
+          "refresh_token": {
+            "type": "string",
+            "nullable": true
+          },
+          "token_type": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "userLanguage": {
+            "type": "string",
+            "nullable": true
+          },
+          "userRole": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "userShouldChangePassword": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SimpleRequestTokenParameter": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "refresh_token": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Tenant": {
+        "type": "object",
+        "properties": {
+          "ParentTenant": {
+            "$ref": "#/components/schemas/Tenant"
+          },
+          "ParentTenantId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "Name": {
+            "maxLength": 32,
+            "type": "string",
+            "nullable": true
+          },
+          "TenantContactId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "Id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "RowVersion": {
+            "type": "string",
+            "format": "byte",
+            "nullable": true
+          },
+          "CreatedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "CreatedBy": {
+            "maxLength": 32,
+            "type": "string",
+            "nullable": true
+          },
+          "ChangedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ChangedBy": {
+            "maxLength": 32,
+            "type": "string",
+            "nullable": true
+          },
+          "Disabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TranslationFlat": {
+        "type": "object",
+        "properties": {
+          "Culture": {
+            "type": "string",
+            "nullable": true
+          },
+          "Resource": {
+            "type": "string",
+            "nullable": true
+          },
+          "Value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Password": {
+            "type": "string",
+            "nullable": true
+          },
+          "InitPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "ChangePasswordAfterLogin": {
+            "type": "boolean"
+          },
+          "EMail": {
+            "type": "string",
+            "nullable": true
+          },
+          "FirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "LastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "Culture": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "Please enter JWT with Bearer into field",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
+

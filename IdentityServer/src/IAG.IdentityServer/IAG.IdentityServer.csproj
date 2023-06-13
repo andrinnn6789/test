@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Configuration\DataLayer\State\Migration\Processor\**" />
+    <Content Remove="Configuration\DataLayer\State\Migration\Processor\**" />
+    <EmbeddedResource Remove="Configuration\DataLayer\State\Migration\Processor\**" />
+    <None Remove="Configuration\DataLayer\State\Migration\Processor\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Configuration\DataLayer\Settings\Migration\Script\UpdateDbSqlite1.0.1.sql" />
+    <None Remove="Configuration\DataLayer\Settings\Migration\UpdateDbSqlite1.0.0.sql" />
+    <None Remove="Configuration\DataLayer\State\Migration\Script\UpdateDbSqlite1.0.1.sql" />
+    <None Remove="Configuration\DataLayer\State\Migration\Script\UpdateDbSqlite1.0.2.sql" />
+    <None Remove="Configuration\DataLayer\State\Migration\UpdateDbSqlite1.0.0.sql" />
+    <None Remove="Configuration\DataLayer\State\Migration\UpdateDbSqlite1.0.1.sql" />
+    <None Remove="Plugin\UserDatabase\DataLayer\Context\Migration\Script\UpdateDbSqlite1.0.0.sql" />
+    <None Remove="Plugin\UserDatabase\DataLayer\Context\Migration\Script\UpdateDbSqlite1.0.1.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Configuration\DataLayer\Settings\Migration\Script\UpdateDbSqlite1.0.1.sql" />
+    <EmbeddedResource Include="Configuration\DataLayer\Settings\Migration\Script\UpdateDbSqlite1.0.0.sql" />
+    <EmbeddedResource Include="Configuration\DataLayer\State\Migration\Script\UpdateDbSqlite1.0.0.sql" />
+    <EmbeddedResource Include="Configuration\DataLayer\State\Migration\Script\UpdateDbSqlite1.0.1.sql" />
+    <EmbeddedResource Include="Configuration\DataLayer\State\Migration\Script\UpdateDbSqlite1.0.2.sql" />
+    <EmbeddedResource Include="Plugin\UserDatabase\DataLayer\Context\Migration\Script\UpdateDbSqlite1.0.1.sql" />
+    <EmbeddedResource Include="Plugin\UserDatabase\DataLayer\Context\Migration\Script\UpdateDbSqlite1.0.0.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\src\IAG.Infrastructure\IAG.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Plugin\UserDatabase\DataLayer\Context\Migration\Processor\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
+  </ItemGroup>
+
+</Project>

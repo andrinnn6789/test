@@ -1,0 +1,63 @@
+﻿{
+  "MockSettings": [
+    {
+      "Request": {
+        "Methods": [ "GET" ],
+        "Path": "/todos/1"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": "RestClientAndLoggerResponse.json"
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "GET" ],
+        "Path": "/todos/not_existing_id"
+      },
+      "Response": {
+        "Status": 404,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": "this will fail"
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/posts"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": "RestClientAndLoggerResponse.json"
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "PATCH" ],
+        "Path": "/patches"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": "RestClientAndLoggerResponse.json"
+      }
+    }  ]
+}

@@ -1,0 +1,15 @@
+﻿{
+  "EmptyBody": {},
+  "EmptyStringBody": "",
+  "StringBody": "TestString",
+  "ArrayBody": [ 1, 2, 3 ],
+  "ObjectBody": {
+    "Decimal": 3.14,
+    "Number": 42,
+    "Object": {
+      "Array": [ "a", "b", "c" ],
+      "Boolean": true
+    },
+    "String": "Test"
+  } 
+}

@@ -1,0 +1,39 @@
+﻿{
+  "MockSettings": [
+    {
+      "Request": {
+        "Methods": [ "GET" ],
+        "Path": "/api/Core/ControlCenter/Distribution/Customer/68b7efca-ca3f-454e-977d-0ff767fad44b"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": {
+          "Id": "68b7efca-ca3f-454e-977d-0ff767fad44b",
+          "CustomerName": "Test Customer",
+          "Description": "Just a test",
+          "ProductIds":  [] 
+        }
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "GET" ],
+        "Path": "/api/Core/ControlCenter/Distribution/Customer/00000000-0000-0000-0000-000000000000"
+      },
+      "Response": {
+        "Status": 401,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": "Customer ID empty"
+      }
+    }
+  ]
+}

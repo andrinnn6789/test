@@ -1,0 +1,5 @@
+2023-03-03 15:00:10.9930|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin ProcessEngine.Job.Monitoring
+2023-03-03 15:00:11.1648|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin ProcessEngine.Job.Cleanup
+2023-03-03 15:00:11.1701|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin Test.SimplestJob
+2023-03-03 15:00:11.1701|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin Test.HelloJob
+2023-03-03 15:00:12.3930|DEBUG|IAG.ProcessEngine.Startup.ServiceLifetime|PE-services started

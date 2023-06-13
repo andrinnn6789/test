@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+    <DocumentationFile>obj\Release\net6.0\IAG.ControlCenter.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Distribution\DataLayer\Context\Migration\Scripts\UpdateDbSqlite1.0.0.sql" />
+    <None Remove="Distribution\DataLayer\Context\Migration\Scripts\UpdateDbSqlite1.1.0.sql" />
+    <None Remove="Distribution\DataLayer\Context\Migration\Scripts\UpdateDbSqlite1.1.1.sql" />
+    <None Remove="Mobile\DataLayer\Context\Migration\Scripts\UpdateDbSqlite1.0.0.sql" />
+    <None Remove="Mobile\DataLayer\Context\Migration\Scripts\UpdateDbSqlite1.0.1.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Distribution\DataLayer\Context\Migration\Scripts\UpdateDbSqlite1.1.1.sql" />
+    <EmbeddedResource Include="Distribution\DataLayer\Context\Migration\Scripts\UpdateDbSqlite1.1.0.sql" />
+    <EmbeddedResource Include="Distribution\DataLayer\Context\Migration\Scripts\UpdateDbSqlite1.0.0.sql" />
+    <EmbeddedResource Include="Mobile\DataLayer\Context\Migration\Scripts\UpdateDbSqlite1.0.1.sql" />
+    <EmbeddedResource Include="Mobile\DataLayer\Context\Migration\Scripts\UpdateDbSqlite1.0.0.sql" />
+    <EmbeddedResource Include="Mobile\DataLayer\Context\Migration\Scripts\UpdateDbSqlite1.0.2.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="6.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\IdentityServer\src\IAG.IdentityServer\IAG.IdentityServer.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\src\IAG.Infrastructure\IAG.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

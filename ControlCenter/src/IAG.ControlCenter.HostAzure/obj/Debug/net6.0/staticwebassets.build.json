@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "jhwXdBhvNcuaG5nTt4MGdwUxaPNCWI3fUBxA3fp0VZU=",
+  "Source": "IAG.ControlCenter.HostAzure",
+  "BasePath": "_content/IAG.ControlCenter.HostAzure",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "C:\\Users\\ap\\source\\repos\\IAG\\Base\\IdentityServer\\src\\IAG.IdentityServer\\IAG.IdentityServer.csproj",
+      "Version": 2,
+      "Source": "IAG.IdentityServer",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

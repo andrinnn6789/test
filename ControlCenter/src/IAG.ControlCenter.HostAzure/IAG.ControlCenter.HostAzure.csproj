@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\src\IAG.Infrastructure\IAG.Infrastructure.csproj" />
+    <ProjectReference Include="..\IAG.ControlCenter\IAG.ControlCenter.csproj" />
+  </ItemGroup>
+
+
+</Project>

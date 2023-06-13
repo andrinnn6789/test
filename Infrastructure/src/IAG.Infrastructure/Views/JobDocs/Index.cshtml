@@ -1,0 +1,93 @@
+﻿@using IAG.Infrastructure.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Markdig
+
+@model JobDocsViewModel
+@{
+    Layout = "~/Views/Shared/_DocsLayout.cshtml";
+    ViewData["Title"] = "Docs";
+}
+@{ 
+    var markdownParser = new MarkdownPipelineBuilder()
+        .UseAdvancedExtensions()
+        .UsePipeTables()
+        .Build();
+}
+
+<h2>Jobs</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Bestandteil von</th>
+        <th scope="col">Status</th>
+        <th scope="col">Zeitplan</th>
+        <th scope="col">Doku</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var documentation in Model.Docs.OrderByDescending(d => d.IsJobActive).ThenByDescending(d => d.IsCustomerSpecific).ThenBy(d => d.JobName)) {
+        <tr>
+            <td>
+                @documentation.JobName
+            </td>
+            <td>
+                @if (@documentation.IsCustomerSpecific)
+                {
+                    @("Kundenerweiterung")
+                }
+                else
+                {
+                    @("Standard")
+                }
+            </td>
+            <td>
+                @if (@documentation.IsJobActive)
+                {
+                    <span class="badge bg-success">Aktiv</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Inaktiv</span>
+                }
+            </td>
+            <td>
+                @documentation.JobSchedule
+            </td>
+            <td>
+                 @if (!string.IsNullOrEmpty(@documentation.ContentAsMarkdown))
+                 {
+                     <form asp-action="Index">
+                         <button type="button" class="toggle-button btn btn-primary fa fa-arrow-alt-circle-down" title="Toggle"></button>
+                     </form>     
+                 }
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="5">
+                <div class="markdown-content" style="display: none;">
+                    @Html.Raw(Markdown.ToHtml(documentation.ContentAsMarkdown!, markdownParser))
+                </div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+       $(document).ready(function () {
+           $(".toggle-button").click(function () {
+               var contentDiv = $(this).closest("tr").next().find(".markdown-content");
+               if (contentDiv.is(":visible")) {
+                   contentDiv.hide();
+                   $(this).removeClass("fa-arrow-alt-circle-up").addClass("fa-arrow-alt-circle-down");
+               } else {
+                   contentDiv.show();
+                   $(this).removeClass("fa-arrow-alt-circle-down").addClass("fa-arrow-alt-circle-up");
+               }
+           });
+       });
+   </script>
+}

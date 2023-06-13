@@ -1,0 +1,5 @@
+﻿BEGIN TRANSACTION;
+
+DELETE FROM "Resource" WHERE Name NOT LIKE 'Atlas.%' AND Name NOT LIKE 'System.%';
+
+COMMIT;

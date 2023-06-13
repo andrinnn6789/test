@@ -1,0 +1,1 @@
+2023-06-05 14:34:56.2669|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.UserDatabaseAuthentication

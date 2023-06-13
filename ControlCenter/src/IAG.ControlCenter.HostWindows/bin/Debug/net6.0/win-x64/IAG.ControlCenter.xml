@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IAG.ControlCenter</name>
+    </assembly>
+    <members>
+        <member name="P:IAG.ControlCenter.Mobile.BusinessLayer.Model.Backend.Color">
+            <summary>
+            3 byte RGB-color as string, eg. "#EFDECD"
+            </summary>
+        </member>
+        <member name="M:IAG.ControlCenter.Mobile.CoreServer.LicenceAppController.RequestToken(IAG.Infrastructure.IdentityServer.Model.SimpleRequestTokenParameter,IAG.Infrastructure.IdentityServer.IAttackDetection,IAG.Infrastructure.Authorization.ITokenHandler,IAG.Infrastructure.IdentityServer.IRealmHandler)">
+            <summary>
+            Requests a token for authentication.
+            </summary>
+            <remarks>
+            This endpoint allows anonymous access and is used to request a token for authentication.
+            The token is generated based on the provided request token parameter.
+            </remarks>
+            <param name="requestTokenParameter">The request token parameter containing necessary information for token generation.</param>
+            <param name="attackDetection">The attack detection service.</param>
+            <param name="tokenHandler">The token handler service.</param>
+            <param name="realmHandler">The realm handler service.</param>
+            <returns>An action result containing the request token response.</returns>
+            <response code="400">If the request token parameter is null.</response>
+            <response code="200">If the request token is successfully generated.</response>
+        </member>
+        <member name="M:IAG.ControlCenter.Mobile.CoreServer.LicenceAppController.Check(IAG.ControlCenter.Mobile.BusinessLayer.Model.LicenceRequest)">
+            <summary>
+            Checks the validity of a license.
+            </summary>
+            <remarks>
+            This endpoint allows checking the validity of a license based on the provided license request.
+            The license request contains the necessary information for license verification.
+            </remarks>
+            <param name="request">The license request containing the license information.</param>
+            <returns>An action result containing the license response.</returns>
+            <response code="400">If the license request is null.</response>
+            <response code="200">If the license is successfully checked.</response>
+        </member>
+        <member name="M:IAG.ControlCenter.Mobile.CoreServer.LicenceAppController.Free(IAG.ControlCenter.Mobile.BusinessLayer.Model.LicenceRequest)">
+            <summary>
+            Frees a license.
+            </summary>
+            <remarks>
+            This endpoint allows freeing a license based on the provided license request.
+            The license request contains the necessary information for freeing the license.
+            </remarks>
+            <param name="request">The license request containing the license information.</param>
+            <returns>An action result containing the license free response.</returns>
+            <response code="400">If the license request is null.</response>
+            <response code="200">If the license is successfully freed.</response>
+        </member>
+        <member name="M:IAG.ControlCenter.Mobile.CoreServer.LicenceAppController.GetFlat(System.String)">
+            <summary>
+            Retrieves a flat list of translations.
+            </summary>
+            <remarks>
+            This endpoint retrieves a flat list of translations based on the specified culture.
+            The flat list contains translations with the specified culture and their corresponding values.
+            </remarks>
+            <param name="culture">The culture code for filtering translations.</param>
+            <returns>An action result containing a flat list of translations.</returns>
+            <response code="200">Returns the flat list of translations.</response>
+        </member>
+        <member name="M:IAG.ControlCenter.Mobile.CoreServer.LicenceSyncController.Sync(IAG.ControlCenter.Mobile.BusinessLayer.Model.LicenceSync)">
+            <summary>
+            Synchronizes mobile licences with remote systems.
+            </summary>
+            <remarks>
+            This endpoint allows synchronization of mobile licences with remote systems.
+            It updates the systems based on the provided licence sync request, removing any deleted entries.
+            The method returns a list of changed mobile licences as a result of the synchronization.
+            </remarks>
+            <param name="request">The licence sync request containing the changes to be synchronized.</param>
+            <returns>An action result containing a list of changed mobile licences.</returns>
+            <response code="400">If the licence sync request is null.</response>
+            <response code="200">Returns the list of changed mobile licences.</response>
+        </member>
+        <member name="M:IAG.ControlCenter.Mobile.CoreServer.LicenceSyncController.Update(IAG.ControlCenter.Mobile.BusinessLayer.Model.LicenceSync)">
+            <summary>
+            Updates systems with the provided licence sync data.
+            </summary>
+            <remarks>
+            This endpoint is used to update systems with the licence sync data provided in the request.
+            It performs the necessary operations to add and update the systems based on the provided licence sync data.
+            </remarks>
+            <param name="request">The licence sync data containing the changes to be applied.</param>
+            <returns>An IActionResult indicating the status of the update operation.</returns>
+            <response code="400">If the licence sync data is null.</response>
+            <response code="200">Indicates a successful update operation.</response>
+        </member>
+        <member name="P:IAG.ControlCenter.Mobile.DataLayer.Model.MobileInstallation.Color">
+            <summary>
+            3 byte RGB-color as string, eg. "#EFDECD"
+            </summary>
+        </member>
+    </members>
+</doc>

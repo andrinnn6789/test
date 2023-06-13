@@ -1,0 +1,8 @@
+2023-06-13 10:36:01.1435|INFO|IAG.IdentityServer.Startup.ConfigureIdentityServer|Registering identity-plugin IAG.IdentityServer.Plugin.UserDatabaseAuthentication
+2023-06-13 10:36:02.7690|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin InstallClient.Job.Transfer
+2023-06-13 10:36:02.7845|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin InstallClient.Job.InstallerSelfUpdate
+2023-06-13 10:36:02.7845|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin InstallClient.Job.Inventory
+2023-06-13 10:36:02.7845|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin InstallClient.Job.Installation
+2023-06-13 10:36:02.8074|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin ProcessEngine.Job.Monitoring
+2023-06-13 10:36:02.8074|INFO|IAG.ProcessEngine.Startup.ServerConfigureServices|Registering process-plugin ProcessEngine.Job.Cleanup
+2023-06-13 10:36:05.5410|DEBUG|IAG.ProcessEngine.Startup.ServiceLifetime|PE-services started

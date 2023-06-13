@@ -1,0 +1,32 @@
+﻿{
+  "MockSettings": [
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/api/Identity/Realm/RequestToken",
+        "BodyContains": "CorrectPassword"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": {
+          "access_token": "ValidBearerToken"
+        }
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/api/Identity/Realm/RequestToken",
+        "BodyContains": "WrongPassword"
+      },
+      "Response": {
+        "Status": 403
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+﻿{
+  "MockSettings": [
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/api/Identity/Realm/RequestToken"
+      },
+      "Response": {
+        "Status": 200,
+        "Headers": [
+          {
+            "Content-Type": "application/json"
+          }
+        ],
+        "Body": { "access_token": "token-content-does-not-matter" }
+      }
+    },
+    {
+      "Request": {
+        "Methods": [ "POST" ],
+        "Path": "/api/Identity/Admin/RealmAdmin/PublishClaims"
+      },
+      "Response": {
+        "Status": 204
+      }
+    }
+  ]
+}

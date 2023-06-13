@@ -1,0 +1,23 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning",
+      "System": "Warning",
+      "Microsoft": "Warning",
+      "IAG": "Debug"
+    },
+    "Console": {
+      "IncludeScopes": true,
+      "LogLevel": {
+        "IAG": "Warning"
+      }
+    }
+    /*,
+        "EventLog": {
+        "LogLevel": {
+        "Default": "Information"
+        }
+        }
+         */
+  }
+}
